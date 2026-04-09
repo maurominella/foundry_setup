@@ -1,7 +1,7 @@
 {
  "name": "Python 3",
  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
- "image": "mcr.microsoft.com/devcontainers/python:dev-3.12-bookworm",
+ "image": "mcr.microsoft.com/devcontainers/python:dev-3.13-bookworm",
  "features": {
   "ghcr.io/devcontainers/features/azure-cli:1": {},
   "terraform": {
@@ -9,7 +9,8 @@
    "tflint": "latest",
    "terragrunt": "latest"
   }
- }
+ },
+  "postCreateCommand": "pwd && pip install -r requirements.txt && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash"
 
  // Use 'forwardPorts' to make a list of ports inside the container available locally.
  // "forwardPorts": [],
