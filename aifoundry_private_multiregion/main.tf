@@ -26,7 +26,6 @@ locals {
 
 resource "azurerm_virtual_network" "vnet" {
   provider = azurerm.subscription_networking
-
   name                = "vnet-${local.prefixed_random_string}"
   address_space       = var.vnet_address_space
   location            = var.location_networking
