@@ -41,6 +41,10 @@ resource "azurerm_storage_account" "storage" {
     default_action = "Allow"
     bypass         = ["AzureServices"]
   }
+
+  tags = {
+    "SecurityControl" = "Ignore"
+  }
 }
 
 ## Create Azure AI Search for agent indexing
@@ -73,6 +77,10 @@ resource "azurerm_cosmosdb_account" "cosmos" {
   }
 
   public_network_access_enabled = true
+
+  tags = {
+    "SecurityControl" = "Ignore"
+  }
 }
 
 ## Create AI Foundry account
@@ -146,7 +154,7 @@ resource "time_sleep" "wait_for_rbac" {
 ## Create AI Foundry project
 resource "azapi_resource" "ai_project" {
   type      = "Microsoft.CognitiveServices/accounts/projects@2025-04-01-preview"
-  name      = var.project_name
+  name      = "aif${random_string.unique.result}-${var.project_name}"
   location  = var.location
   parent_id = azapi_resource.ai_foundry.id
 

@@ -1,3 +1,10 @@
+## subscription ids
+variable "subscription_id" {
+  description = "The subscription id where AI Foundry will be deployed"
+  type        = string
+}
+
+
 variable "location" {
   description = "The Azure region where resources will be deployed"
   type        = string
