@@ -41,7 +41,10 @@ cd code
 terraform init
 ```
 
-3. Customize variables in terraform.tfvars, or `dev.tfvars` in the root
+3. Customize variables in terraform.tfvars, or `dev.tfvars` in the root, that may simply contain:
+```
+location = "swedencentral"
+```
 
 4. Deploy:
 ```bash
