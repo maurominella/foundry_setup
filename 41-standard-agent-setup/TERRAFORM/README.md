@@ -41,13 +41,26 @@ cd code
 terraform init
 ```
 
-3. Customize variables in terraform.tfvars
+3. Customize variables in terraform.tfvars, or `dev.tfvars` in the root
 
 4. Deploy:
 ```bash
-terraform plan
-terraform apply
+terraform plan -var-file="dev.tfvars"
+terraform apply -var-file="dev.tfvars"
 ```
+
+## Variables
+### What main.tf is doing
+This line:
+```
+data "azurerm_client_config" "current" {}
+```
+reads the already active Azure context, including:
+- subscription_id
+- tenant_id
+- client_id
+
+So Terraform already knows which subscription to use from the provider login context.
 
 ## Resources Created
 
