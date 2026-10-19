@@ -124,7 +124,7 @@ resource "azurerm_cosmosdb_account" "cosmosdb" {
   free_tier_enabled = false
 
   # Set security-related settings
-  local_authentication_disabled = true
+  local_authentication_enabled = false
   public_network_access_enabled = false
 
   # Set high availability and failover settings

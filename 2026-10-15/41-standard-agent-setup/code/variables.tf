@@ -11,21 +11,21 @@ variable "ai_services_name_prefix" {
 }
 
 variable "project_name" {
-  description = "The name of the project"
+  description = "The base name of the project; a generated unique suffix is appended"
   type        = string
-  default     = "standard-agent-project"
+  default     = "std-agent-project" # Shortened project name by mauromi
 }
 
 variable "model_name" {
   description = "The model to deploy"
   type        = string
-  default     = "gpt-4.1"
+  default     = "gpt-5.4" # Updated to the latest model version by mauromi
 }
 
 variable "model_version" {
   description = "The version of the model"
   type        = string
-  default     = "2025-04-14"
+  default     = "2026-03-05" # Updated to the latest model version by mauromi
 }
 
 variable "model_capacity" {

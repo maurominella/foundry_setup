@@ -43,6 +43,8 @@ terraform init
 
 3. Customize variables in terraform.tfvars
 
+   `project_name` is the base name (default: `std-agent-project`). The template appends the generated four-digit suffix to the deployed project name and display name, for example `std-agent-project-1234`.
+
 4. Deploy:
 ```bash
 terraform plan
@@ -58,6 +60,8 @@ terraform apply
 - Azure AI Search (for agent indexing)
 - Cosmos DB Account (for agent threads)
 - Connections and RBAC assignments
+
+The Storage Account and Cosmos DB Account are tagged with `"SecurityControl" = "Ignore"` (by mauromi).
 
 ## Documentation
 

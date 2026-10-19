@@ -16,6 +16,7 @@ resource "random_string" "unique" {
 
 locals {
   account_name = lower("${var.ai_services_name_prefix}${random_string.unique.result}")
+  project_name = "${var.project_name}-${random_string.unique.result}" # by mauromi
 }
 
 ## Create a resource group
@@ -36,6 +37,10 @@ resource "azurerm_storage_account" "storage" {
   shared_access_key_enabled       = false
   min_tls_version                 = "TLS1_2"
   allow_nested_items_to_be_public = false
+
+  tags = {
+    "SecurityControl" = "Ignore" # by mauromi
+  }
 
   network_rules {
     default_action = "Allow"
@@ -62,6 +67,10 @@ resource "azurerm_cosmosdb_account" "cosmos" {
   resource_group_name = azurerm_resource_group.rg.name
   offer_type          = "Standard"
   kind                = "GlobalDocumentDB"
+
+  tags = {
+    "SecurityControl" = "Ignore" # by mauromi
+  }
 
   consistency_policy {
     consistency_level = "Session"
@@ -146,7 +155,7 @@ resource "time_sleep" "wait_for_rbac" {
 ## Create AI Foundry project
 resource "azapi_resource" "ai_project" {
   type      = "Microsoft.CognitiveServices/accounts/projects@2025-04-01-preview"
-  name      = var.project_name
+  name      = local.project_name
   location  = var.location
   parent_id = azapi_resource.ai_foundry.id
 
@@ -157,7 +166,7 @@ resource "azapi_resource" "ai_project" {
   body = {
     properties = {
       description = "Standard agent project with BYOS"
-      displayName = var.project_name
+      displayName = local.project_name
     }
   }
 
